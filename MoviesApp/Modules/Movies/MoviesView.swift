@@ -7,14 +7,18 @@
 
 import UIKit
 
+protocol MoviesUI: AnyObject {
+    func updateList()
+}
+
 class MoviesView: UIViewController {
     
     @IBOutlet weak var moviesSearchBar: UISearchBar!
     @IBOutlet weak var moviesTableView: UITableView!
 
-    private let presenter: MoviesPresenter
+    private let presenter: MoviesPresentable
     
-    init(presenter: MoviesPresenter) {
+    init(presenter: MoviesPresentable) {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)
@@ -47,9 +51,7 @@ class MoviesView: UIViewController {
 
 extension MoviesView: UISearchBarDelegate { 
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-    }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
     
 }
 

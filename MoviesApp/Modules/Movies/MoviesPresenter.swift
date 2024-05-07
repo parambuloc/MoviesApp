@@ -7,19 +7,23 @@
 
 import Foundation
 
-protocol MoviesUI: AnyObject {
-    func updateList()
+protocol MoviesPresentable: AnyObject {
+    var ui: MoviesUI? { get }
+    var movieCellViewModels: [MovieCellViewModel] { get }
+    func onSearch()
+    func onPaginate()
 }
 
-class MoviesPresenter {
-    private let moviesInteractor: MoviesInteractor
+class MoviesPresenter: MoviesPresentable {
+    private let moviesInteractor: MoviesInteractable
     private let mapper: MovieCellViewMapper
-    weak var ui: MoviesUI?
     private var page: Int = 1
     private var isLastPage: Bool = false
-    public var movieCellViewModels = [MovieCellViewModel]()
     
-    init(moviesInteractor: MoviesInteractor,
+    weak var ui: MoviesUI?
+    var movieCellViewModels = [MovieCellViewModel]()
+    
+    init(moviesInteractor: MoviesInteractable,
          mapper: MovieCellViewMapper = MovieCellViewMapper()) {
         self.moviesInteractor = moviesInteractor
         self.mapper = mapper
