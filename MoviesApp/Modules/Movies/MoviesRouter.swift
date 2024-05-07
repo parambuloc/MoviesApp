@@ -29,8 +29,10 @@ class MoviesRouter: MoviesRouting {
         moviesView = MoviesView(presenter: presenter)
         presenter.ui = moviesView
         
-        window?.rootViewController = moviesView
-        window?.makeKeyAndVisible()
+        DispatchQueue.main.async {
+            window?.rootViewController = self.moviesView
+            window?.makeKeyAndVisible()
+        }
     }
     
     func showDetailMovie(withMovieId movieId: String) {

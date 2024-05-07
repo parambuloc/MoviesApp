@@ -32,6 +32,11 @@
 		B634D4382BEA7AB0002107F0 /* DetailMovieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D4362BEA7AB0002107F0 /* DetailMovieView.swift */; };
 		B634D4392BEA7AB0002107F0 /* DetailMovieView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B634D4372BEA7AB0002107F0 /* DetailMovieView.xib */; };
 		B634D43B2BEA7E0F002107F0 /* DetailMovieRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D43A2BEA7E0F002107F0 /* DetailMovieRouter.swift */; };
+		B634D45B2BEAA863002107F0 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D4592BEAA863002107F0 /* LoginView.swift */; };
+		B634D45C2BEAA863002107F0 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B634D45A2BEAA863002107F0 /* LoginView.xib */; };
+		B634D45E2BEAA917002107F0 /* LoginRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D45D2BEAA917002107F0 /* LoginRouter.swift */; };
+		B634D4602BEAA922002107F0 /* LoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D45F2BEAA922002107F0 /* LoginPresenter.swift */; };
+		B634D4622BEAA934002107F0 /* LoginInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B634D4612BEAA934002107F0 /* LoginInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +67,11 @@
 		B634D4362BEA7AB0002107F0 /* DetailMovieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieView.swift; sourceTree = "<group>"; };
 		B634D4372BEA7AB0002107F0 /* DetailMovieView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailMovieView.xib; sourceTree = "<group>"; };
 		B634D43A2BEA7E0F002107F0 /* DetailMovieRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMovieRouter.swift; sourceTree = "<group>"; };
+		B634D4592BEAA863002107F0 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		B634D45A2BEAA863002107F0 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		B634D45D2BEAA917002107F0 /* LoginRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRouter.swift; sourceTree = "<group>"; };
+		B634D45F2BEAA922002107F0 /* LoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPresenter.swift; sourceTree = "<group>"; };
+		B634D4612BEAA934002107F0 /* LoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +129,12 @@
 		B634D3FA2BE9D4CC002107F0 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				B634D45A2BEAA863002107F0 /* LoginView.xib */,
+				B634D4592BEAA863002107F0 /* LoginView.swift */,
+				B634D4612BEAA934002107F0 /* LoginInteractor.swift */,
+				B634D45F2BEAA922002107F0 /* LoginPresenter.swift */,
+				B634D45D2BEAA917002107F0 /* LoginRouter.swift */,
+				B634D4632BEAA93D002107F0 /* Entities */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -220,6 +236,13 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
+		B634D4632BEAA93D002107F0 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,6 +303,7 @@
 			files = (
 				B634D3EF2BE9AC41002107F0 /* Assets.xcassets in Resources */,
 				B634D4152BE9E76B002107F0 /* MovieCellView.xib in Resources */,
+				B634D45C2BEAA863002107F0 /* LoginView.xib in Resources */,
 				B634D4392BEA7AB0002107F0 /* DetailMovieView.xib in Resources */,
 				B634D40C2BE9E5EE002107F0 /* MoviesView.xib in Resources */,
 				B634D3F22BE9AC41002107F0 /* Base in Resources */,
@@ -295,12 +319,14 @@
 			files = (
 				B634D4352BEA78C6002107F0 /* MapperDetailMovieView.swift in Sources */,
 				B634D42D2BEA77B8002107F0 /* DetailMoviePresenter.swift in Sources */,
+				B634D4602BEAA922002107F0 /* LoginPresenter.swift in Sources */,
 				B634D3EA2BE9AC40002107F0 /* ViewController.swift in Sources */,
 				B634D4142BE9E76B002107F0 /* MovieCellView.swift in Sources */,
 				B634D4032BE9E169002107F0 /* MoviesRouter.swift in Sources */,
 				B634D4012BE9E158002107F0 /* MoviesInteractor.swift in Sources */,
 				B634D43B2BEA7E0F002107F0 /* DetailMovieRouter.swift in Sources */,
 				B634D4302BEA786A002107F0 /* DetailMovieViewModel.swift in Sources */,
+				B634D45E2BEAA917002107F0 /* LoginRouter.swift in Sources */,
 				B634D4192BE9E9B6002107F0 /* MovieResponseEntity.swift in Sources */,
 				B634D42B2BEA75EA002107F0 /* DetailMovieEntity.swift in Sources */,
 				B634D41C2BEA001D002107F0 /* ImageViewExtension.swift in Sources */,
@@ -308,8 +334,10 @@
 				B634D3E62BE9AC40002107F0 /* AppDelegate.swift in Sources */,
 				B634D41F2BEA0095002107F0 /* MovieCellViewModel.swift in Sources */,
 				B634D4222BEA00D5002107F0 /* MapperMovieCellView.swift in Sources */,
+				B634D45B2BEAA863002107F0 /* LoginView.swift in Sources */,
 				B634D40B2BE9E5EE002107F0 /* MoviesView.swift in Sources */,
 				B634D4172BE9E995002107F0 /* MovieEntity.swift in Sources */,
+				B634D4622BEAA934002107F0 /* LoginInteractor.swift in Sources */,
 				B634D4382BEA7AB0002107F0 /* DetailMovieView.swift in Sources */,
 				B634D3E82BE9AC40002107F0 /* SceneDelegate.swift in Sources */,
 				B634D3FF2BE9D516002107F0 /* MoviesPresenter.swift in Sources */,
