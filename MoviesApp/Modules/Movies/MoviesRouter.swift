@@ -8,14 +8,34 @@
 import Foundation
 import UIKit
 
-class MoviesRouter {
-    func start(window: UIWindow?) {
-        let interactor = MoviesInteractorMock()
-        let presenter = MoviesPresenter(moviesInteractor: interactor)
-        let view = MoviesView(presenter: presenter)
-        presenter.ui = view
+protocol MoviesRouting: AnyObject {
+    var detailMovieRouter: DetailMovieRouting? { get }
+    var moviesView: MoviesView? { get }
+    
+    func showMovies(window: UIWindow?)
+    func showDetailMovie(withMovieId movieId: String)
+}
+
+class MoviesRouter: MoviesRouting {
+    var detailMovieRouter: DetailMovieRouting?
+    var moviesView: MoviesView?
+    
+    func showMovies(window: UIWindow?) {
+        self.detailMovieRouter = DetailMovieRouter()
         
-        window?.rootViewController = view
+        let interactor = MoviesInteractor()
+        let presenter = MoviesPresenter(moviesInteractor: interactor, router: self)
+        
+        moviesView = MoviesView(presenter: presenter)
+        presenter.ui = moviesView
+        
+        window?.rootViewController = moviesView
         window?.makeKeyAndVisible()
+    }
+    
+    func showDetailMovie(withMovieId movieId: String) {
+        guard let fromViewController = moviesView else { return }
+        detailMovieRouter?.showDetail(fromViewController: fromViewController,
+                                      withMovieId: movieId)
     }
 }

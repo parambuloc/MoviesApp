@@ -1,5 +1,5 @@
 //
-//  MovieCellViewMapper.swift
+//  MapperMovieCellView.swift
 //  MoviesApp
 //
 //  Created by Paolo Arámbulo on 7/05/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MovieCellViewMapper {
+struct MapperMovieCellView {
     func map(entity: MovieEntity) -> MovieCellViewModel {
         return MovieCellViewModel(title: entity.title,
                                   overview: entity.overview,

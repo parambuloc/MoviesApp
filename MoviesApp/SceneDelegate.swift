@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         window = UIWindow(windowScene: windowScene)
-        moviesRouter.start(window: window)
+        moviesRouter.showMovies(window: window)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

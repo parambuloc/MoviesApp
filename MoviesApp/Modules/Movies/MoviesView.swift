@@ -74,7 +74,13 @@ extension MoviesView: UITableViewDataSource {
     
 }
 
-extension MoviesView: UITableViewDelegate { }
+extension MoviesView: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.onTapCell(atIndex: indexPath.row)
+    }
+    
+}
 
 extension MoviesView: MoviesUI {
     
