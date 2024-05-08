@@ -14,7 +14,7 @@ protocol DetailMoviePresentable: AnyObject {
 }
 
 class DetailMoviePresenter: DetailMoviePresentable {
-    weak var ui: (any DetailMovieUI)?
+    weak var ui: DetailMovieUI?
     
     let movieId: String
     private let detailMovieInteractor: DetailMovieInteractor

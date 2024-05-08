@@ -13,7 +13,7 @@ protocol LoginPresentable: AnyObject {
 }
 
 class LoginPresenter: LoginPresentable {
-    var ui: LoginUI?
+    weak var ui: LoginUI?
     
     private let user = "Admin"
     private let password = "Password*123"
