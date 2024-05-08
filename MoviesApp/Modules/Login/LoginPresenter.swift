@@ -27,7 +27,7 @@ class LoginPresenter: LoginPresentable {
     
     func onTapLogin(user: String, password: String) {
         if user == self.user && password == self.password {
-            self.router.showMovieList()
+            self.router.toMovieListScreen()
         } else {
             ui?.showError()
         }

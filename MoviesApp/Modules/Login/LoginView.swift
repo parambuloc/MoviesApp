@@ -16,9 +16,9 @@ class LoginView: UIViewController {
     @IBOutlet weak var userTxt: UITextField!
     @IBOutlet weak var passwordTxt: UITextField!
     
-    private let presenter: LoginPresenter
+    private let presenter: LoginPresentable
     
-    init(presenter: LoginPresenter) {
+    init(presenter: LoginPresentable) {
         self.presenter = presenter
         
         super.init(nibName: nil, bundle: nil)

@@ -9,6 +9,7 @@ import UIKit
 
 protocol MoviesUI: AnyObject {
     func updateList()
+    func errorLoadList(error: String)
 }
 
 class MoviesView: UIViewController {
@@ -34,7 +35,7 @@ class MoviesView: UIViewController {
         setupTableView()
         setupSearchBar()
         
-        presenter.onSearch()
+        presenter.onAppear()
     }
     
     private func setupTableView() {
@@ -51,7 +52,17 @@ class MoviesView: UIViewController {
 
 extension MoviesView: UISearchBarDelegate { 
     
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { }
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) { 
+        presenter.onSearch(searchText: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
     
 }
 
@@ -88,6 +99,15 @@ extension MoviesView: MoviesUI {
         DispatchQueue.main.async {
             self.moviesTableView.reloadData()
         }
+    }
+    
+    func errorLoadList(error: String) {
+        let alertController = UIAlertController(title: "Error", message: error, preferredStyle: .alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        
+        present(alertController, animated: true, completion: nil)
     }
     
 }

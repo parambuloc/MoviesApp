@@ -14,12 +14,6 @@ protocol DetailMovieRouting: AnyObject {
 
 class DetailMovieRouter: DetailMovieRouting {
     func showDetail(fromViewController: UIViewController, withMovieId movieId: String) {
-        let interactor = DetailMovieInteractor()
-        let presenter = DetailMoviePresenter(movieId: movieId,
-                                             detailMovieInteractor: interactor)
-        let view = DetailMovieView(presenter: presenter)
-        presenter.ui = view
-        
-        fromViewController.present(view, animated: true)
+        fromViewController.present(DetailMovieFactory.create(id: movieId), animated: true)
     }
 }

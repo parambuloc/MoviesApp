@@ -8,13 +8,18 @@
 import Foundation
 
 protocol DetailMovieInteractable: AnyObject {
-   func getDetailMovie(id: String) async -> DetailMovieEntity
+   func getDetailMovie(id: String) async -> Result<DetailMovie, DomainError>
 }
 
 class DetailMovieInteractor: DetailMovieInteractable {
-    func getDetailMovie(id: String) async -> DetailMovieEntity {
-        let url = URL(string: "https://api.themoviedb.org/3/movie/\(id)?language=es-PE&api_key=dd0f4584625c2b35ecc3047eb390d34f")!
-        let (data, _) = try! await URLSession.shared.data(from: url)
-        return try! JSONDecoder().decode(DetailMovieEntity.self, from: data)
+
+    private let detailMovieUseCase: GetDetailMovieUseCaseType
+    
+    init(detailMovieUseCase: GetDetailMovieUseCaseType) {
+        self.detailMovieUseCase = detailMovieUseCase
+    }
+    
+    func getDetailMovie(id: String) async -> Result<DetailMovie, DomainError> {
+        return await detailMovieUseCase.execute(id: id)
     }
 }

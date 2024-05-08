@@ -17,10 +17,10 @@ class DetailMoviePresenter: DetailMoviePresentable {
     weak var ui: DetailMovieUI?
     
     let movieId: String
-    private let detailMovieInteractor: DetailMovieInteractor
-    private let mapper: MapperDetailMovieView
+    private let detailMovieInteractor: DetailMovieInteractable
+    private let mapper: DetailMovieViewMapper
     
-    init(movieId: String, detailMovieInteractor: DetailMovieInteractor, mapper: MapperDetailMovieView = MapperDetailMovieView()) {
+    init(movieId: String, detailMovieInteractor: DetailMovieInteractor, mapper: DetailMovieViewMapper = DetailMovieViewMapper()) {
         self.movieId = movieId
         self.detailMovieInteractor = detailMovieInteractor
         self.mapper = mapper
@@ -28,8 +28,11 @@ class DetailMoviePresenter: DetailMoviePresentable {
     
     func onViewAppear() {
         Task {
-            let model = await detailMovieInteractor.getDetailMovie(id: movieId)
-            let viewModel = mapper.map(entity: model)
+            let result = await detailMovieInteractor.getDetailMovie(id: movieId)
+            guard case .success(let detail) = result else {
+                return
+            }
+            let viewModel = mapper.map(entity: detail)
             await MainActor.run {
                 ui?.update(movie: viewModel)
             }

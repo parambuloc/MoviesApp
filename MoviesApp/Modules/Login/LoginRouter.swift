@@ -9,35 +9,28 @@ import Foundation
 import UIKit
 
 protocol LoginRouting: AnyObject {
-    var moviesRouter: MoviesRouting? { get }
     var loginView: LoginView? { get }
     var window: UIWindow? { get }
     
-    func showMovieList()
-    func showLogin(window: UIWindow?)
+    func toMovieListScreen()
+    func showLogin(window: UIWindow?, router: LoginRouting)
 }
 
 class LoginRouter: LoginRouting {
-    var moviesRouter: MoviesRouting?
-    var loginView: LoginView?
-    var window: UIWindow?
+    weak var loginView: LoginView?
+    weak var window: UIWindow?
     
-    func showLogin(window: UIWindow?) {
+    func showLogin(window: UIWindow?, router: LoginRouting) {
         self.window = window
-        self.moviesRouter = MoviesRouter()
         
-        let interactor = LoginInteractor()
-        let presenter = LoginPresenter(router: self, loginInteractor: interactor)
-        
-        loginView = LoginView(presenter: presenter)
-        presenter.ui = loginView
-        
-        window?.rootViewController = loginView
+        window?.rootViewController = LoginFactory.create(router: router)
         window?.makeKeyAndVisible()
     }
     
-    func showMovieList() {
+    func toMovieListScreen() {
+        let moviesRouter = MainRouterFactory.shared.makeMoviesRouter()
+        
         guard let window = window else { return }
-        moviesRouter?.showMovies(window: window)
+        moviesRouter.start(window: window, router: moviesRouter)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  MovieResponseEntity.swift
+//  MovieListPaginationEntity.swift
 //  MoviesApp
 //
 //  Created by Paolo Arámbulo on 6/05/24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MovieResponseEntity: Decodable {
+struct MovieListPaginationEntity: Decodable {
     let page: Int
     let totalPages: Int
     let results: [MovieEntity]

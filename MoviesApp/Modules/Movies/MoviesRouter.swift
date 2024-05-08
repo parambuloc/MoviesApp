@@ -9,27 +9,23 @@ import Foundation
 import UIKit
 
 protocol MoviesRouting: AnyObject {
-    var detailMovieRouter: DetailMovieRouting? { get }
     var moviesView: MoviesView? { get }
     
-    func showMovies(window: UIWindow?)
+    func start(window: UIWindow?, router: MoviesRouting)
     func showDetailMovie(withMovieId movieId: String)
 }
 
 class MoviesRouter: MoviesRouting {
-    var detailMovieRouter: DetailMovieRouting?
+    private let detailMovieRouter: DetailMovieRouting
     var moviesView: MoviesView?
     
-    func showMovies(window: UIWindow?) {
-        self.detailMovieRouter = DetailMovieRouter()
-        
-        let interactor = MoviesInteractor()
-        let presenter = MoviesPresenter(moviesInteractor: interactor, router: self)
-        
-        moviesView = MoviesView(presenter: presenter)
-        presenter.ui = moviesView
-        
+    init(detailMovieRouter: DetailMovieRouting = DetailMovieRouter()) {
+        self.detailMovieRouter = detailMovieRouter
+    }
+    
+    func start(window: UIWindow?, router: MoviesRouting) {
         DispatchQueue.main.async {
+            self.moviesView = MovieListPaginationFactory.create(router: router)
             window?.rootViewController = self.moviesView
             window?.makeKeyAndVisible()
         }
@@ -37,7 +33,7 @@ class MoviesRouter: MoviesRouting {
     
     func showDetailMovie(withMovieId movieId: String) {
         guard let fromViewController = moviesView else { return }
-        detailMovieRouter?.showDetail(fromViewController: fromViewController,
+        detailMovieRouter.showDetail(fromViewController: fromViewController,
                                       withMovieId: movieId)
     }
 }
